@@ -180,4 +180,19 @@ $('#search-box').on('keyup', function(){
 $('.content-demo-area div').hide();
 
 
+//Loop through all buttons and add "click" event to each of them
+//and also the logic: hide all content sections and show only the according
+//highlight background the clicked button
+$('.btn-demo-area button').on('click', function(){
+	//Set all buttons background to white
+	$('.btn-demo-area button').css('background-color', 'white');
 
+	//Set the clicked button background to "orange" color
+	$(this).css('background-color', 'orange');
+
+	//Hide all the content areas
+	$('.content-demo-area div').hide();
+
+	//Show only the content area matching to the clicked button
+	$('.content-demo-area div').eq($(this).index()).show(1000);
+});
