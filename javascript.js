@@ -149,7 +149,7 @@ $.getJSON(
 		$.each(data, function(i, question){//i: index, question
 			//Extract question and answer
 			let content =`
-				<div class="col-12 col-md-6 p-2">
+				<div class="col-12 col-md-6">
 					<div style="background-color: #fcba03">
 						<h4>${question.question}</h4>
 						<p>${question.answer}</p>
@@ -162,3 +162,22 @@ $.getJSON(
 		});
 	}//json file will be returned in "data"
 );
+
+//Search function
+$('#search-box').on('keyup', function(){
+	//Get entered keywords
+	let keywords = $(this).val().toLowerCase();
+	//Loop through all questions/answers and find if this question/answer
+	//contain the keyword? If yes, if not, hide it.
+
+	$('#questions div').filter(function(){
+		$(this).toggle($(this).html().toLowerCase().indexOf(keywords) > -1);
+	});
+});
+
+//JQUERY: Accordion Component
+//Initially hide all content-demo-content
+$('.content-demo-area div').hide();
+
+
+
