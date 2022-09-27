@@ -134,3 +134,31 @@ $('#new-customer').on('focus', function(){
 $('#new-customer').on('blur', function(){
 	$(this).css('background', 'white');
 });
+
+//---------------------------------------------
+//JQUERY: AJAX
+let proxy = 'https://cors-anywhere.herokuapp.com/';
+let url = 'http://danieldangs.com/itwd6408/json/faqs.json';
+
+//User Jquery function "getJSON" to query this json file.
+$.getJSON(
+	proxy + url,//send request to this url to get Json file
+	function(data){
+		//Loop through all questions and extract them and
+		//Display them on webpage
+		$.each(data, function(i, question){//i: index, question
+			//Extract question and answer
+			let content =`
+				<div class="col-12 col-md-6 p-2">
+					<div style="background-color: #fcba03">
+						<h4>${question.question}</h4>
+						<p>${question.answer}</p>
+					</div>
+					
+				</div>
+				`;
+				//append this question to the list
+				$('#questions').append(content);
+		});
+	}//json file will be returned in "data"
+);
